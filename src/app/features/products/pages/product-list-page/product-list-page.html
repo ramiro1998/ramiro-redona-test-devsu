@@ -1,0 +1,39 @@
+<div class="page-container">
+
+    <header class="app-header">
+        <div class="logo">
+            <span>BANCO</span>
+        </div>
+    </header>
+
+    <div class="product-list-content">
+
+        <app-search (search)="onSearch($event)"></app-search>
+
+        <ng-container *ngIf="isLoading.asObservable() | async; else loadedContent">
+            <div class="skeleton-table">
+                <div class="skeleton-header"></div>
+                <div class="skeleton-row" *ngFor="let i of [1, 2, 3, 4, 5]">
+                    <div class="skeleton-cell-logo"></div>
+                    <div class="skeleton-cell-wide"></div>
+                    <div class="skeleton-cell"></div>
+                    <div class="skeleton-cell"></div>
+                    <div class="skeleton-cell"></div>
+                </div>
+                <div class="skeleton-footer"></div>
+            </div>
+        </ng-container>
+
+        <ng-template #loadedContent>
+            <ng-container *ngIf="filteredProducts$ | async as products">
+                <app-product-list-table [products]="products" [totalResults]="(totalResults$ | async) ?? 0"
+                    [totalFilteredResults]="(totalFilteredResults$ | async) ?? 0"
+                    [recordsPerPage]="(recordsPerPage$ | async) ?? 5" [currentPage]="(currentPage$ | async) ?? 1"
+                    [isFirstPage]="(isFirstPage$ | async) ?? true" [isLastPage]="(isLastPage$ | async) ?? true"
+                    (recordsPerPageChange)="onRecordsPerPageChange($event)" (pageChange)="onPageChange($event)">>
+                </app-product-list-table>
+            </ng-container>
+        </ng-template>
+
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="table-container">
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Nombre del producto</th>
+                <th>Descripción <span class="info-icon">ⓘ</span></th>
+                <th>Fecha de liberación <span class="info-icon">ⓘ</span></th>
+                <th>Fecha de reestructuración <span class="info-icon">ⓘ</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td class="logo-cell">
+                    <div class="product-avatar">{{ product.logo }}</div>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.date_release }}</td>
+                <td>{{ product.date_revision }}</td>
+            </tr>
+
+            <tr *ngIf="products.length === 0">
+                <td colspan="5" class="no-results">No se encontraron productos.</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="table-footer">
+    <div class="results-count">{{ totalFilteredResults }} Resultados</div>
+
+    <div class="pagination-controls">
+        <select class="results-per-page" [ngModel]="recordsPerPage" (change)="onSelectChange($event)">
+            <option *ngFor="let size of pageSizeOptions">
+                {{ size }}
+            </option>
+        </select>
+
+        <button [disabled]="isFirstPage" (click)="onPreviousPage()">
+            &lt;
+        </button>
+
+        <button [disabled]="isLastPage" (click)="onNextPage()">
+            &gt;
+        </button>
+    </div>
+</div>

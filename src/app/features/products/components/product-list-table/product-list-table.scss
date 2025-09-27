@@ -1,0 +1,93 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table thead th {
+  background-color: #f7f7f7;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.product-table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.product-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+
+.product-table tbody td {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.info-icon {
+  margin-left: 5px;
+  color: #888;
+  font-size: 0.9em;
+  cursor: help;
+}
+
+.logo-cell {
+  width: 50px;
+}
+
+.product-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.results-count {
+  font-weight: 600;
+  color: #555;
+}
+
+.pagination-controls select,
+.pagination-controls button {
+  padding: 5px 8px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.no-results {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
