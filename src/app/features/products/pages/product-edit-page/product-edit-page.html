@@ -1,0 +1,15 @@
+<div class="edit-page-wrapper">
+
+    <div *ngIf="errorMessage" class="alert alert-error">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-state">
+        Cargando formulario de edición...
+    </div>
+
+    <app-product-form *ngIf="productToEdit" [product]="productToEdit" [isSubmitting]="isSubmitting"
+        (formSubmit)="onUpdateProduct($event)">
+    </app-product-form>
+
+</div>

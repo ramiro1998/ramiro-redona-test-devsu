@@ -7,6 +7,7 @@
                 <th>Descripción <span class="info-icon">ⓘ</span></th>
                 <th>Fecha de liberación <span class="info-icon">ⓘ</span></th>
                 <th>Fecha de reestructuración <span class="info-icon">ⓘ</span></th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.date_release }}</td>
                 <td>{{ product.date_revision }}</td>
+                <td>
+                    <app-product-options [productId]="product.id" (edit)="onProductEdit($event)"
+                        (delete)="onProductDelete($event)">
+                    </app-product-options>
+                </td>
             </tr>
 
             <tr *ngIf="products.length === 0">

@@ -5,6 +5,7 @@ import { SearchComponent } from '../../../../shared/components/search/search';
 import { ProductListTableComponent } from '../../components/product-list-table/product-list-table';
 import { Product } from '../../models/product.interface';
 import { ProductService } from '../../services/product';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-list-page',
@@ -12,7 +13,8 @@ import { ProductService } from '../../services/product';
   imports: [
     CommonModule,
     SearchComponent,
-    ProductListTableComponent
+    ProductListTableComponent,
+    RouterModule
   ],
   templateUrl: './product-list-page.html',
   styleUrls: ['./product-list-page.scss']
@@ -36,7 +38,7 @@ export class ProductListPageComponent implements OnInit {
 
   private subscription = new Subscription();
 
-  constructor(private productApiService: ProductService) { }
+  constructor(private productApiService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -64,8 +66,7 @@ export class ProductListPageComponent implements OnInit {
         }
         const lowerCaseSearch = searchTerm.toLowerCase();
         return products.filter(product =>
-          product.name.toLowerCase().includes(lowerCaseSearch) /* ||
-          product.description.toLowerCase().includes(lowerCaseSearch) */
+          product.name.toLowerCase().includes(lowerCaseSearch)
         );
       }),
       shareReplay(1)
@@ -122,6 +123,14 @@ export class ProductListPageComponent implements OnInit {
   onPageChange(direction: 1 | -1): void {
     const nextPage = this.currentPage$.value + direction;
     this.currentPage$.next(nextPage);
+  }
+
+  navigateToEdit(id: string): void {
+    this.router.navigate(['/product/edit', id]);
+  }
+
+  onProductDelete(id: string): void {
+    console.log('Abrir modal de eliminación para ID:', id);
   }
 
   ngOnDestroy(): void {

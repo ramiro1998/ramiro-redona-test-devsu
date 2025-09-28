@@ -1,0 +1,10 @@
+<div class="registration-page-wrapper">
+
+    <div *ngIf="errorMessage" class="alert alert-error">
+        {{ errorMessage }}
+    </div>
+
+    <app-product-form (formSubmit)="onCreateProduct($event)" (formReset)="onFormReset()" [isSubmitting]="isSubmitting">
+    </app-product-form>
+
+</div>

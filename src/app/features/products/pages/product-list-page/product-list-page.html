@@ -8,7 +8,14 @@
 
     <div class="product-list-content">
 
-        <app-search (search)="onSearch($event)"></app-search>
+        <div class="search-and-add-container">
+            <app-search (search)="onSearch($event)"></app-search>
+
+            <button class="btn-primary" [routerLink]="['/product/add']">
+                Agregar
+            </button>
+        </div>
+
 
         <ng-container *ngIf="isLoading.asObservable() | async; else loadedContent">
             <div class="skeleton-table">
@@ -30,7 +37,8 @@
                     [totalFilteredResults]="(totalFilteredResults$ | async) ?? 0"
                     [recordsPerPage]="(recordsPerPage$ | async) ?? 5" [currentPage]="(currentPage$ | async) ?? 1"
                     [isFirstPage]="(isFirstPage$ | async) ?? true" [isLastPage]="(isLastPage$ | async) ?? true"
-                    (recordsPerPageChange)="onRecordsPerPageChange($event)" (pageChange)="onPageChange($event)">>
+                    (recordsPerPageChange)="onRecordsPerPageChange($event)" (pageChange)="onPageChange($event)"
+                    (productEdit)="navigateToEdit($event)" (productDelete)="onProductDelete($event)">
                 </app-product-list-table>
             </ng-container>
         </ng-template>

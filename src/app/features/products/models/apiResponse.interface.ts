@@ -1,5 +1,5 @@
 import { Product } from "./product.interface";
 
-export interface ApiResponse {
-    data: Product[];
+export interface ApiResponse<T> {
+    data: T;
 }
