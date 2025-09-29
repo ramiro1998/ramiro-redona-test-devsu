@@ -6,6 +6,8 @@ import { ProductListTableComponent } from '../../components/product-list-table/p
 import { Product } from '../../models/product.interface';
 import { ProductService } from '../../services/product';
 import { Router, RouterModule } from '@angular/router';
+import { GenericModalData } from '../../../../shared/models/modal-options.interface';
+import { ConfirmationModalComponent } from '../../../../shared/components/confirmation-modal-component/confirmation-modal-component';
 
 @Component({
   selector: 'app-product-list-page',
@@ -14,6 +16,7 @@ import { Router, RouterModule } from '@angular/router';
     CommonModule,
     SearchComponent,
     ProductListTableComponent,
+    ConfirmationModalComponent,
     RouterModule
   ],
   templateUrl: './product-list-page.html',
@@ -38,9 +41,15 @@ export class ProductListPageComponent implements OnInit {
 
   private subscription = new Subscription();
 
+  public showModal: boolean = false;
+  public modalData!: GenericModalData;
+  public productIdToDelete: string | null = null;
+
   constructor(private productApiService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.loadProducts()
 
     this.subscription.add(
       this.productApiService.getProducts().pipe(
@@ -111,6 +120,22 @@ export class ProductListPageComponent implements OnInit {
     );
   }
 
+  private loadProducts(): void {
+    this.subscription.add(
+      this.productApiService.getProducts().pipe(
+        tap(products => {
+          this.rawProducts = products;
+          this.isLoading.next(false);
+          this.productData$.next(products);
+        }),
+        catchError(error => {
+          this.isLoading.next(false);
+          return of([]);
+        })
+      ).subscribe()
+    );
+  }
+
   onSearch(term: string): void {
     this.searchTerm$.next(term);
   }
@@ -130,7 +155,46 @@ export class ProductListPageComponent implements OnInit {
   }
 
   onProductDelete(id: string): void {
-    console.log('Abrir modal de eliminación para ID:', id);
+    const product = this.rawProducts.find(p => p.id === id);
+    if (product) {
+      this.productIdToDelete = id;
+
+      this.modalData = {
+        message: `¿Estás seguro de eliminar el producto '${product.name}'?`,
+        buttons: [
+          { label: 'Cancelar', role: 'cancel', styleClass: 'btn-secondary' },
+          { label: 'Confirmar', role: 'confirm', styleClass: 'btn-primary btn-confirm' }
+        ]
+      };
+
+      this.showModal = true;
+    }
+  }
+
+  handleModalAction(role: any): void {
+    if (role === 'confirm' && this.productIdToDelete) {
+      this.executeDelete();
+    } else {
+      this.closeModal();
+    }
+  }
+
+  executeDelete(): void {
+    this.productApiService.deleteProduct(this.productIdToDelete!).subscribe({
+      next: () => {
+        alert(`Producto eliminado correctamente.`);
+        this.closeModal();
+        this.loadProducts();
+      },
+      error: (err) => {
+        this.closeModal();
+      }
+    });
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.productIdToDelete = null;
   }
 
   ngOnDestroy(): void {

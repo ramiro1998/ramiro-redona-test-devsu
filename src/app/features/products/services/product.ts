@@ -20,12 +20,12 @@ export class ProductService {
     );
   }
 
-  createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${environment.apiUrl}/bp/products`, product);
+  createProduct(product: Product): Observable<ApiResponse<Product>> {
+    return this.http.post<ApiResponse<Product>>(`${environment.apiUrl}/bp/products`, product);
   }
 
-  updateProduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(`${environment.apiUrl}/bp/products`, product);
+  updateProduct(product: Product): Observable<ApiResponse<Product>> {
+    return this.http.put<ApiResponse<Product>>(`${environment.apiUrl}/bp/products/${product.id}`, product);
   }
 
   verifyId(id: string): Observable<boolean> {
@@ -46,6 +46,15 @@ export class ProductService {
       catchError(error => {
         console.error(`Error al obtener producto con ID ${id}:`, error);
         throw new Error(`Producto no encontrado.`);
+      })
+    );
+  }
+
+  deleteProduct(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/bp/products/${id}`).pipe(
+      catchError(error => {
+        console.error(`Error al eliminar producto con ID ${id}:`, error);
+        throw new Error(`Error en la eliminación del producto.`);
       })
     );
   }

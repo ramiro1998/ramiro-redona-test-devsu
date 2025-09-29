@@ -1,0 +1,15 @@
+<div class="modal-overlay" [class.visible]="isVisible">
+    <div class="modal-content">
+
+        <h2 *ngIf="data?.title" class="modal-title">{{ data.title }}</h2>
+
+        <p *ngIf="data?.message" class="modal-message">{{ data.message }}</p>
+
+        <div class="modal-actions">
+            <button *ngFor="let button of data?.buttons" [class]="button.styleClass"
+                (click)="onButtonClick(button.role)">
+                {{ button.label }}
+            </button>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@
         <div class="search-and-add-container">
             <app-search (search)="onSearch($event)"></app-search>
 
-            <button class="btn-primary" [routerLink]="['/product/add']">
+            <button class="btn-primary btn-confirm" [routerLink]="['/product/add']">
                 Agregar
             </button>
         </div>
@@ -42,6 +42,8 @@
                 </app-product-list-table>
             </ng-container>
         </ng-template>
-
     </div>
+
+    <app-confirmation-modal-component [isVisible]="showModal" [data]="modalData" (action)="handleModalAction($event)">
+    </app-confirmation-modal-component>
 </div>

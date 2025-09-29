@@ -34,6 +34,28 @@
   border-radius: 6px;
 }
 
+.btn-primary.btn-confirm {
+  background-color: #ffda00;
+  color: #333;
+  border-color: #ffda00;
+  border: 1px solid transparent;
+  padding: 0.7rem;
+  min-width: 100px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #060690;
+  font-size: 14px;
+  font-weight: 550;
+  d &:hover {
+    background-color: #ffc400;
+  }
+}
+
+.search-and-add-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* --- Skeleton styles --- */
 
 @keyframes pulse-bg {

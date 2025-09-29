@@ -1,0 +1,32 @@
+.product-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+$logo-size: 40px;
+$initials-bg: #e0e0f0;
+
+.logo-initials,
+.logo-image {
+  width: $logo-size;
+  height: $logo-size;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.logo-initials {
+  background-color: $initials-bg;
+  color: #4a4a8f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo-image {
+  object-fit: cover;
+}

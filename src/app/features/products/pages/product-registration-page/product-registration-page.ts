@@ -34,22 +34,19 @@ export class ProductRegistrationPageComponent {
     this.isSubmitting = true;
     this.errorMessage = null;
 
-    console.log('Intentando registrar producto:', newProduct);
-
     this.subscription.add(
       this.productService.createProduct(newProduct).pipe(
         finalize(() => {
           this.isSubmitting = false;
         }),
         catchError(error => {
-          console.error('❌ Error al registrar el producto:', error);
+          console.error('Error al registrar el producto:', error);
           this.errorMessage = 'Hubo un error al intentar crear el producto. Inténtalo de nuevo.';
           return of(null);
         })
       ).subscribe(response => {
         if (response) {
-          console.log('✅ Producto creado con éxito:', response);
-          alert(`Producto ${response.name} creado exitosamente.`);
+          alert(`Producto ${response.data.name} creado exitosamente.`);
           this.router.navigate(['/']);
         }
       })
@@ -58,7 +55,6 @@ export class ProductRegistrationPageComponent {
 
   onFormReset(): void {
     this.errorMessage = null;
-    console.log('🔄 Formulario Reiniciado');
   }
 
   ngOnDestroy(): void {

@@ -12,8 +12,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let product of products">
-                <td class="logo-cell">
-                    <div class="product-avatar">{{ product.logo }}</div>
+                <td>
+                    <app-product-logo [productName]="product.name">
+                    </app-product-logo>
                 </td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>

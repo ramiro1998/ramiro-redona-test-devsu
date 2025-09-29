@@ -9,7 +9,7 @@
     </div>
 
     <app-product-form *ngIf="productToEdit" [product]="productToEdit" [isSubmitting]="isSubmitting"
-        (formSubmit)="onUpdateProduct($event)">
+        (formSubmit)="onUpdateProduct($event)" (formReset)="onFormReset()">
     </app-product-form>
 
 </div>

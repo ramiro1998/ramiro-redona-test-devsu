@@ -100,7 +100,9 @@ $color-border: #ccc;
 
   .btn-primary {
     background-color: $color-primary;
-    color: #333;
+    color: #060690;
+    font-size: 14px;
+    font-weight: 550;
 
     &:disabled {
       background-color: #f1f1f1;
@@ -111,7 +113,9 @@ $color-border: #ccc;
 
   .btn-secondary {
     background-color: $color-secondary;
-    color: #555;
+    color: #060690;
+    font-size: 14px;
+    font-weight: 550;
   }
 }
 

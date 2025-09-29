@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product.interface';
 import { ProductOptionsComponent } from '../product-option/product-option-component';
+import { ProductLogoComponent } from '../product-logo/product-logo';
 
 @Component({
   selector: 'app-product-list-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductOptionsComponent],
+  imports: [CommonModule, FormsModule, ProductOptionsComponent, ProductLogoComponent],
   templateUrl: './product-list-table.html',
   styleUrls: ['./product-list-table.scss'],
 })

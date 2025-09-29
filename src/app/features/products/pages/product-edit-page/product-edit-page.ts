@@ -22,6 +22,7 @@ export class ProductEditPageComponent implements OnInit, OnDestroy {
   private productId: string = '';
   private subscription = new Subscription();
 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -67,11 +68,15 @@ export class ProductEditPageComponent implements OnInit, OnDestroy {
         })
       ).subscribe(response => {
         if (response) {
-          alert(`Producto ${response.name} actualizado exitosamente.`);
+          alert(`Producto ${response.data.name} actualizado exitosamente.`);
           this.router.navigate(['/']);
         }
       })
     );
+  }
+
+  onFormReset(): void {
+    this.errorMessage = null;
   }
 
   ngOnDestroy(): void {

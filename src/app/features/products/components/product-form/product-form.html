@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="id">ID</label>
-                    <input id="id" type="text" formControlName="id"
+                    <input id="id" type="text" formControlName="id" [readonly]="isEditMode"
                         [class.input-error]="controls['id'].invalid && (controls['id'].dirty || controls['id'].touched)">
 
                     <ng-container *ngIf="controls['id'].invalid && (controls['id'].dirty || controls['id'].touched)">
@@ -93,7 +93,7 @@
 
                 <div class="form-group">
                     <label for="date_revision">Fecha de Revisión</label>
-                    <input id="date_revision" type="date" formControlName="date_revision"
+                    <input id="date_revision" type="date" formControlName="date_revision" [readonly]="true"
                         [class.input-error]="controls['date_revision'].invalid && (controls['date_revision'].dirty || controls['date_revision'].touched)">
 
                     <ng-container

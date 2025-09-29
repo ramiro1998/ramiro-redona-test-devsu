@@ -29,7 +29,6 @@ export class ProductFormComponent implements OnInit {
     this.isEditMode = !!this.product;
     this.initForm();
 
-    this.productForm.get('date_revision')?.disable();
     if (this.isEditMode) {
       this.productForm.get('id')?.disable();
     }
@@ -97,11 +96,12 @@ export class ProductFormComponent implements OnInit {
   }
 
   onReset(): void {
-    this.productForm.reset(this.product ? this.productForm.value : null);
-    this.formReset.emit();
-
+    const id = this.productForm.get('id')?.value
+    this.productForm.reset(null);
     if (this.isEditMode) {
+      this.productForm.get('id')?.setValue(id)
       this.productForm.get('id')?.disable();
     }
+    this.formReset.emit();
   }
 }
