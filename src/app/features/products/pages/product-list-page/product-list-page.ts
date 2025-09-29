@@ -120,7 +120,7 @@ export class ProductListPageComponent implements OnInit {
     );
   }
 
-  private loadProducts(): void {
+  loadProducts(): void {
     this.subscription.add(
       this.productApiService.getProducts().pipe(
         tap(products => {
