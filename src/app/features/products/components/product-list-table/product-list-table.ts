@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product.interface';
 import { ProductOptionsComponent } from '../product-option/product-option-component';
 import { ProductLogoComponent } from '../product-logo/product-logo';
+import { TruncateTextPipe } from "../../../../shared/pipes/truncate-text-pipe";
 
 @Component({
   selector: 'app-product-list-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductOptionsComponent, ProductLogoComponent],
+  imports: [CommonModule, FormsModule, ProductOptionsComponent, ProductLogoComponent, TruncateTextPipe],
   templateUrl: './product-list-table.html',
   styleUrls: ['./product-list-table.scss'],
 })

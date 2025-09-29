@@ -1,9 +1,4 @@
 <div class="form-page-container">
-    <header class="app-header">
-        <div class="logo">
-            <span>BANCO</span>
-        </div>
-    </header>
 
     <div class="form-card">
         <h2 class="form-title">
@@ -41,7 +36,7 @@
                         *ngIf="controls['name'].invalid && (controls['name'].dirty || controls['name'].touched)">
                         <div *ngIf="controls['name'].errors?.['required']" class="error-message">Este campo es requerido
                         </div>
-                        <div *ngIf="controls['name'].errors?.['minlength']" class="error-message">Mínimo 5 caracteres.
+                        <div *ngIf="controls['name'].errors?.['minlength']" class="error-message">Mínimo 6 caracteres.
                         </div>
                         <div *ngIf="controls['name'].errors?.['maxlength']" class="error-message">Máximo 100 caracteres.
                         </div>

@@ -7,7 +7,7 @@
                 <th>Descripción <span class="info-icon">ⓘ</span></th>
                 <th>Fecha de liberación <span class="info-icon">ⓘ</span></th>
                 <th>Fecha de reestructuración <span class="info-icon">ⓘ</span></th>
-                <th>Acciones</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@
                     </app-product-logo>
                 </td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
+                <td>{{ product.description | truncateText:30}}</td>
                 <td>{{ product.date_release }}</td>
                 <td>{{ product.date_revision }}</td>
                 <td>
